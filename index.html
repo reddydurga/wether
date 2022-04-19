@@ -1,0 +1,29 @@
+<html>
+    <head></head>
+    <body>
+            <input id="lat" type="text" placeholder="Enter latitude"/>
+            <input id="long" type="text" placeholder="Enter longitude"/>
+            <button onclick="getweather()">Submit</button>
+            <p>Temperature :
+                <span id="temp"></span><sup>0</sup>C
+                <span id="loc"></span>
+            </p>
+        <script>
+            function getweather(){
+                const lat=document.getElementById("lat").value;
+                const long=document.getElementById("long").value;
+                const api="5554ceba8866c2b5cbca7d37581d0eac"
+                    const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`
+                    fetch(url)
+                        .then((res)=>{
+                            return res.json()
+                        })
+                        .then(resJson=>{
+                            console.log(resJson)
+                            document.getElementById("temp").innerHTML=resJson.main.temp
+                            document.getElementById("loc").innerHTML=resJson.name
+                        })
+            }
+        </script>
+    </body>
+</html>
